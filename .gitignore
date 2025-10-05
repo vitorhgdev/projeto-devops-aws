@@ -1,0 +1,13 @@
+# Ambientes Virtuais
+.venv/
+venv/
+ENV/
+
+# Arquivos compilados do Python
+__pycache__/
+*.pyc
+
+# Arquivos do Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
