@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # O serviço 'api' está indentado com 2 espaços
+  api:
+    # As opções de 'api' (build, ports, etc.) estão indentadas com 4 espaços
+    build: .
+    ports:
+      - "5001:5000"
+    volumes:
+      # O item da lista de volumes ('-') está indentado com 6 espaços
+      - .:/app
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - FLASK_DEBUG=1
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydb
+    depends_on:
+      - db
+
+  # O serviço 'db' está no mesmo nível de indentação do 'api' (2 espaços)
+  db:
+    # As opções de 'db' estão indentadas com 4 espaços
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydb
+    ports:
+      - "5432:5432"
