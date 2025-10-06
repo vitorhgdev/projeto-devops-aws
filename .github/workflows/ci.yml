@@ -7,15 +7,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-  # O job 'build' está indentado com 2 espaços
   build:
-    # 'runs-on' está indentado com 4 espaços
     runs-on: ubuntu-latest
-    
-    # 'steps' está no mesmo nível de 'runs-on'
     steps:
-    # O primeiro passo ('- uses:') está indentado com 6 espaços
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
@@ -27,16 +23,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
-    # SUBIR OS SERVIÇOS COM DOCKER COMPOSE ---
+    # --- SUBIR OS SERVIÇOS EM SEGUNDO PLANO ---
     - name: Run services with Docker Compose
       run: docker compose up -d
 
-    # RODAR OS TESTES DENTRO DO CONTAINER DA API ---
+    # --- RODAR OS TESTES DENTRO DO CONTAINER DA API ---
     - name: Run tests with pytest
       run: docker compose exec -T api python -m pytest
-        
-    - name: Run tests with pytest
-      env:
-        PYTHONPATH: .
-      run: |
-        python -m pytest  
