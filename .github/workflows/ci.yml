@@ -29,11 +29,11 @@ jobs:
     
     # SUBIR OS SERVIÇOS COM DOCKER COMPOSE ---
     - name: Run services with Docker Compose
-      run: docker-compose up -d
+      run: docker compose up -d
 
     # RODAR OS TESTES DENTRO DO CONTAINER DA API ---
     - name: Run tests with pytest
-      run: docker-compose exec -T api python -m pytest
+      run: docker compose exec -T api python -m pytest
         
     - name: Run tests with pytest
       env:
