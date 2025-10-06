@@ -1,5 +1,7 @@
 # Projeto DevOps: API Multi-Container com Python, Docker e Terraform na AWS
 
+[![Python CI](https://github.com/vitorhgdev/projeto-devops-aws/actions/workflows/ci.yml/badge.svg)](https://github.com/vitorhgdev/projeto-devops-aws/actions/workflows/ci.yml)
+
 ## 🚀 Sobre o Projeto
 
 Este projeto demonstra um fluxo de trabalho completo de desenvolvimento e infraestrutura, simulando um ambiente de produção real. O objetivo é fazer o deploy de uma aplicação web multi-container, composta por uma API em Python (Flask) que se conecta a um banco de dados PostgreSQL.
