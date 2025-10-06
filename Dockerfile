@@ -1,5 +1,5 @@
 # Usar uma imagem oficial do Python
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 # --- ADICIONE ESTA SEÇÃO PARA INSTALAR DEPENDÊNCIAS DO SISTEMA ---
 # Atualiza o gerenciador de pacotes e instala as dependências necessárias para o psycopg2
