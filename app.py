@@ -15,7 +15,7 @@ db_name = os.environ.get('POSTGRES_DB')
 # O nome do serviço do banco de dados no docker-compose
 db_host = 'db'
 
-app.config['SQLALCHEMEY_DATABAS_URI'] = (
+app.config['SQLALCHEMY_DATABASE_URI'] = (
     f'postgresql://{db_user}:{db_password}@{db_host}/{db_name}'
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
