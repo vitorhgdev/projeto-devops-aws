@@ -22,6 +22,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
+    - name: Lint with flake8
+      run: |
+        # Roda o flake8 para verificar o estilo do código
+        flake8 .
     
     # --- SUBIR OS SERVIÇOS EM SEGUNDO PLANO ---
     - name: Run services with Docker Compose
