@@ -11,3 +11,7 @@ __pycache__/
 .terraform/
 *.tfstate
 *.tfstate.backup
+.terraform.lock.hcl
+
+# Arquivo de segredos locais
+.env
