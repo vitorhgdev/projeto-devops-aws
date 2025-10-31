@@ -30,7 +30,7 @@ resource "aws_security_group" "meu_firewall" {
     from_port = 22
     to_port = 22
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["177.72.109.45/32"]
   }
 
   # Permite que o servidor acesse qualquer coisa na internet
