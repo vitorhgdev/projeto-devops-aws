@@ -42,9 +42,9 @@ jobs:
     # --- Injeta os segredos do Github no ambiente ---
     # --- Para que o 'docker compose' possa usá-los ---
       env:
-        POSTGRESS_USER: ${{ secrets.POSTGRES_USER }}
-        POSTGRESS_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-        POSTGRESS_DB: ${{ secrets.POSTGRES_DB }}  
+        POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        POSTGRES_DB: ${{ secrets.POSTGRES_DB }}  
       run: docker compose up -d
 
     # --- RODAR OS TESTES DENTRO DO CONTAINER DA API ---
