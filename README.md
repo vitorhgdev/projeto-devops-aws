@@ -1,111 +1,75 @@
-# Projeto DevOps: API Multi-Container com Python, Docker e Terraform na AWS
+# Projeto DevOps: API Multi-Container com Deploy Automatizado na AWS
 
 [![Python CI](https://github.com/vitorhgdev/projeto-devops-aws/actions/workflows/ci.yml/badge.svg)](https://github.com/vitorhgdev/projeto-devops-aws/actions/workflows/ci.yml)
 
+<p align="left">
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" alt="AWS">
+  <img src="https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white" alt="Terraform">
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="GitHub Actions">
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL">
+</p>
 
-🚀 Sobre o Projeto
-Este projeto é uma demonstração completa (de ponta-a-ponta) de um fluxo de trabalho DevOps. O objetivo foi pegar uma aplicação web multi-container (API Python/Flask + Banco de Dados PostgreSQL) e automatizar todo o seu ciclo de vida.
+## 🚀 Sobre o Projeto
 
-O processo inclui desde o desenvolvimento local com Docker Compose, passando pela verificação automatizada de qualidade do código (CI/CD com GitHub Actions), até o provisionamento e deploy automatizados da infraestrutura completa na nuvem da AWS usando Terraform.
+Este projeto é uma demonstração **completa (de ponta-a-ponta)** de um fluxo de trabalho DevOps. O objetivo foi pegar uma aplicação web multi-container (API Python/Flask + Banco de Dados PostgreSQL) e automatizar todo o seu ciclo de vida.
 
 Este repositório serve como um case prático das minhas habilidades em Cloud, DevOps, Automação e Segurança.
 
-O que este projeto demonstra:
-Desenvolvimento: Uma API RESTful em Python (Flask) conectada a um banco de dados PostgreSQL.
+## ✨ Principais Features
 
-Containerização: Uso do Docker para empacotar a aplicação e do Docker Compose para orquestração local.
+Este projeto demonstra as seguintes habilidades e conceitos:
 
-Infraestrutura como Código (IaC): Provisionamento de toda a infraestrutura (Instância EC2, Security Groups) na AWS com Terraform.
+* **Infraestrutura como Código (IaC):** Provisionamento de toda a infraestrutura (EC2, Security Groups) na AWS com `Terraform`.
+* **Deploy Automatizado:** Script de `user_data` que instala o Docker e sobe a aplicação na nuvem com um único `terraform apply`.
+* **Containerização:** Aplicação e Banco de Dados 100% containerizados com `Docker` e `Docker Compose`.
+* **Pipeline de CI/CD (GitHub Actions):**
+    * **Linting:** Verificação de estilo de código com `flake8`.
+    * **Testes:** Testes unitários com `pytest` em um ambiente real (subindo os containers).
+* **Segurança (DevSecOps):**
+    * Gerenciamento de segredos locais com `.env` e `GitHub Secrets` para o pipeline de CI.
+    * Configuração de `Security Group` (firewall) restritivo na AWS.
+    * Uso de usuário não-root dentro do `Dockerfile`.
 
-Deploy Automatizado: Uso de user_data no Terraform para, na inicialização do servidor, instalar automaticamente o Docker e subir a aplicação com docker compose.
+## 🏗️ Diagrama da Arquitetura
 
-CI/CD (Integração Contínua): Um pipeline com GitHub Actions que roda automaticamente flake8 (linting) e pytest (testes) a cada push.
 
-Segurança (DevSecOps):
 
-Gerenciamento de segredos locais com .env (não enviado ao GitHub).
+![Diagrama da Arquitetura](arquitetura.png)
 
-Uso de GitHub Secrets para prover senhas ao pipeline de CI.
+---
 
-Configuração de um Security Group (firewall) restritivo na AWS.
+## ⚙️ Como Executar o Projeto
 
-Uso de usuário não-root dentro do Dockerfile.
-
-🛠️ Tecnologias Utilizadas
-Cloud & Infraestrutura: AWS (EC2, S3, Security Groups), Terraform (IaC)
-
-Aplicação & Containers: Python (Flask), PostgreSQL, Docker, Docker Compose
-
-CI/CD & Testes: GitHub Actions, Pytest, Flake8
-
-⚙️ Como Executar o Projeto
 Existem duas formas de executar este projeto:
 
-Opção 1: Deploy Automatizado na AWS (Recomendado)
+### Opção 1: Deploy Automatizado na AWS (Recomendado)
+
 Esta opção provisiona a infraestrutura completa na nuvem e faz o deploy da aplicação.
 
-Pré-requisitos:
+**Pré-requisitos:**
+* Conta na AWS (pode ser o [**AWS Academy Learner Lab**]]).
+* Terraform e Git instalados.
 
-Conta na AWS (você pode usar o [AWS Academy Learner Lab]]).
+**Passos:**
 
-Terraform instalado.
+1.  Clone o repositório:
+    ```bash
+    git clone [https://github.com/vitorhgdev/projeto-devops-aws.git](https://github.com/vitorhgdev/projeto-devops-aws.git)
+    cd projeto-devops-aws
+    ```
+2.  Configure suas credenciais da AWS no seu terminal (necessário se estiver usando o Learner Lab).
+3.  **(Importante: Segurança)** Edite o arquivo `main.tf`, na regra do `aws_security_group` da porta 22 (SSH), e troque `"0.0.0.0/0"` pelo seu IP público (descubra no Google "meu ip") seguido de `/32`.
+4.  Inicialize o Terraform:
+    ```bash
+    terraform init
+    ```
+5.  Aplique a infraestrutura (o deploy pode levar de 3 a 5 minutos):
+    ```bash
+    terraform apply
+    ```
+    (Digite `yes` para confirmar).
 
-Git instalado.
-
-Passos:
-
-Clone o repositório:
-
-Bash
-
-git clone https://github.com/vitorhgdev/projeto-devops-aws.git
-cd projeto-devops-aws
-Configure suas credenciais da AWS no seu terminal (necessário se estiver usando o Learner Lab).
-
-(Importante: Segurança) Edite o arquivo main.tf, na regra do aws_security_group da porta 22 (SSH), e troque "0.0.0.0/0" pelo seu IP público (descubra no Google "meu ip") seguido de /32.
-
-Inicialize o Terraform:
-
-Bash
-
-terraform init
-Aplique a infraestrutura (o deploy pode levar de 3 a 5 minutos):
-
-Bash
-
-terraform apply
-(Digite yes para confirmar).
-
-Ao final, o Terraform mostrará o IP público do servidor. Acesse no seu navegador: http://SEU_IP_PUBLICO:5001
-
-Opção 2: Execução Local (Para Testes Rápidos)
-Esta opção sobe a aplicação na sua própria máquina usando o Docker Compose.
-
-Pré-requisitos:
-
-Docker e Docker Compose instalados.
-
-Git instalado.
-
-Passos:
-
-Clone o repositório e entre na pasta.
-
-Crie um arquivo .env na raiz do projeto (este arquivo é ignorado pelo Git):
-
-POSTGRES_USER=myuser
-POSTGRES_PASSWORD=mypassword
-POSTGRES_DB=mydb
-Suba os containers:
-
-Bash
-
-docker compose up --build
-Acesse no seu navegador: http://localhost:5001
-
-✒️ Autor
-Vítor Hugo Bica
-
-LinkedIn: linkedin.com/in/hugoovitoor
-
-GitHub: @vitorhgdev
+6.  Ao final, o Terraform mostrará o IP público do servidor. Acesse no seu navegador:
+    `http://SEU_IP_PUBLICO:5001`
