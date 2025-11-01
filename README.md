@@ -35,7 +35,6 @@ Este projeto demonstra as seguintes habilidades e conceitos:
 ## 🏗️ Diagrama da Arquitetura
 
 
-
 ![Diagrama da Arquitetura](arquitetura.png)
 
 ---
@@ -73,3 +72,31 @@ Esta opção provisiona a infraestrutura completa na nuvem e faz o deploy da apl
 
 6.  Ao final, o Terraform mostrará o IP público do servidor. Acesse no seu navegador:
     `http://SEU_IP_PUBLICO:5001`
+
+### Opção 2: Execução Local (Para Testes Rápidos)
+
+**Pré-requisitos:**
+* Docker e Docker Compose instalados.
+
+**Passos:**
+
+1.  Clone o repositório e entre na pasta.
+2.  Crie um arquivo `.env` na raiz do projeto (este arquivo é ignorado pelo Git):
+    ```
+    POSTGRES_USER=myuser
+    POSTGRES_PASSWORD=mypassword
+    POSTGRES_DB=mydb
+    ```
+3.  Suba os containers:
+    ```bash
+    docker compose up --build
+    ```
+4.  Acesse no seu navegador: `http://localhost:5001`
+
+---
+
+## ✒️ Autor
+
+**Vítor Hugo Bica**
+* **LinkedIn:** [linkedin.com/in/hugoovitoor](https://www.linkedin.com/in/hugoovitoor/)
+* **GitHub:** [@vitorhgdev](https://github.com/vitorhgdev)
